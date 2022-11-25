@@ -23,7 +23,7 @@ lastest chrome or safari browser
 ```
 ## Getting started
 ```
--  access your email and get the zipnand unzip into directoy of choice
+- git clone https://github.com/npitts/jarvis.git
 - cd into jarvis
 - run npm i
 - run npm start
@@ -34,14 +34,14 @@ running npm start will start the app in development mode and automatically open 
 
 http://localhost:3000
 
-You will be presented with a login screen. 
+You will be presented with a login screen.
 
 username: george@upwave.com,
 password: F!sdsna$sdasd%0
 
 One more thing:
 ```
-don't forget to grab the user id from the users table and place into the data structure I mentioned in the API project. 
+don't forget to grab the user id from the users table and place into the data structure I mentioned in the API project.
 
 Once you seed the db, you will have a new id that will be different for both users. You must take the new ids created when you created the user and replace the one in that data structure on in the server code.
 ```
