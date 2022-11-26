@@ -1,5 +1,5 @@
 import '../App.css';
-import { useState } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import { useNavigate } from "react-router-dom";
 
 const Application = () => {
@@ -15,7 +15,7 @@ const Application = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            let res = await fetch("http://localhost:8080/api/user", {
+            let res = await fetch(`${process.env.REACT_APP_SEBBASSION_HOST}/api/user`, {
                 method: "POST",
                 headers:{
                 'Content-Type': 'application/json'

@@ -11,6 +11,16 @@ Generally the way it works is you login and depending on user type(aoplicant or 
 - Manager View: CORS issue preventing call to API service. The only place its happening for some reason
 - Manager View: More than the one checked box at a time in the status column
 
+## Env variables
+set the below to the API service running locally
+```
+process.env.REACT_APP_SEBBASSION_HOST
+
+note, didn't include an .env so easy way is to:
+
+* open a terminal on linux
+* run export process.env.REACT_APP_SEBBASSION_HOST=localhost:8080
+```
 
 ## Tech uses to build
 - React
@@ -23,7 +33,7 @@ lastest chrome or safari browser
 ```
 ## Getting started
 ```
-- git clone https://github.com/npitts/jarvis.git
+-  access your email and get the zipnand unzip into directoy of choice
 - cd into jarvis
 - run npm i
 - run npm start
@@ -34,14 +44,14 @@ running npm start will start the app in development mode and automatically open 
 
 http://localhost:3000
 
-You will be presented with a login screen.
+You will be presented with a login screen. 
 
 username: george@upwave.com,
 password: F!sdsna$sdasd%0
 
 One more thing:
 ```
-don't forget to grab the user id from the users table and place into the data structure I mentioned in the API project.
+don't forget to grab the user id from the users table and place into the data structure I mentioned in the API project. 
 
 Once you seed the db, you will have a new id that will be different for both users. You must take the new ids created when you created the user and replace the one in that data structure on in the server code.
 ```

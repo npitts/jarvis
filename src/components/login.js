@@ -1,6 +1,5 @@
+import React, { useState, useEffect, Component } from 'react';
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import logo from '../logo.svg';
 
 const Login = (props) => {
     const navigate = useNavigate();
@@ -14,7 +13,7 @@ const Login = (props) => {
     const handleSubmit = (e) => {
       e.preventDefault()
       // console.log(user);
-      fetch('http://localhost:8080/api/user/login', {
+      fetch(`${process.env.REACT_APP_SEBBASSION_HOST}/api/user/login`, {
         method: 'POST',
         body: JSON.stringify(user),
         headers: { 'Content-Type': 'application/json' },
@@ -47,7 +46,7 @@ const Login = (props) => {
     return (
       <div className="wrapper" style={{display: 'flex', alignItems: 'center',
       justifyContent: 'center', height: '100vh'}}>
-        {/*<img src={logo} alt="BigCo Inc. logo"/>*/}
+        {/*<img className="Reg-logo " alt="BigCo Inc. logo"/>*/}
         <form onSubmit={handleSubmit}>
             <input
               type="text"

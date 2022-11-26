@@ -1,52 +1,38 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 
 const Manager = (props) => {
     const [pageData, setPageData] = useState([]);
-    const [checked1, setChecked1] = useState('');
-    const [checked2, setChecked2] = useState('');
-    const [checked3, setChecked3] = useState('');
+    const [checked1, setChecked1] = useState('Archived');
+    const [checked2, setChecked2] = useState('Pending Review');
+    const [checked3, setChecked3] = useState('Ready for Interview');
 
     const { value } = props;
 
-    // console.log(props)
-
-    // todo: fix the below logic to pull all or specific status
-    let url = "";
-    if(value !== "all"){
-        url = `http://localhost:8080/api/application`;
-    }else{
-        url = `http://localhost:8080/api/application`;
-    }
-
     useEffect(()=>{
-        fetch(url,{
+        fetch(`${process.env.REACT_APP_SEBBASSION_HOST}/api/application`,{
             method: 'GET',
             headers:{},
         })
         .then(async (res)=>{
             const applicantInfo = await res.json();
             setPageData(applicantInfo);
+            console.log(applicantInfo)
         })
-        .catch((error)=>{
-            // setData();
-        });
+        .catch((error)=>{});
     })
 
-    const handleChange1 = (value, id) => {
-        console.log(id)
+    const handleChange1 = (value, id, status) => {
        if(id) {
-            // select
-            setChecked1(`${id}`);
-
-            fetch('http://localhost:8080/api/application/status', {
+            setChecked1(`${status}`);
+            fetch(`${process.env.REACT_APP_SEBBASSION_HOST}/api/application/status`, {
                 method: "PUT",
-                headers:{
-                    'Content-Type':"application/json"
+                headers: {
+                    "Content-Type": "application/json"
                 },
-                body:{
-                    "status": `${ value }`,
+                body:JSON.stringify({
+                    "status": `${ status }`,
                     "id": `${ id }`
-                }
+                })
             })
             .then((data) => {})
             .catch((err) => {
@@ -58,21 +44,18 @@ const Manager = (props) => {
        }
     }
 
-    const handleChange2 = (value, id) => {
-        console.log(id)
+    const handleChange2 = (value, id, status) => {
        if(id) {
-            // select
-            setChecked2(`${id}`);
-
-            fetch('http://localhost:8080/api/application/status', {
+            setChecked2(`${status}`);
+            fetch(`${process.env.REACT_APP_SEBBASSION_HOST}/api/application/status`, {
                 method: "PUT",
                 headers:{
-                    'Content-Type':"application/json"
+                    "Content-Type":"application/json"
                 },
-                body:{
-                    "status": `${ value }`,
+                body:JSON.stringify({
+                    "status": `${ status }`,
                     "id": `${ id }`
-                }
+                })
             })
             .then((data) => {})
             .catch((err) => {
@@ -84,21 +67,18 @@ const Manager = (props) => {
        }
     }
 
-    const handleChange3 = (value, id) => {
-        console.log(id)
+    const handleChange3 = (value, id, status) => {
        if(id) {
-            // select
-            setChecked3(`${id}`);
-
-            fetch('http://localhost:8080/api/application/status', {
+            setChecked3(`${status}`);
+            fetch(`${process.env.REACT_APP_SEBBASSION_HOST}/api/application/status`, {
                 method: "PUT",
                 headers:{
-                    'Content-Type':"application/json"
+                    "Content-Type":"application/json"
                 },
-                body:{
-                    "status": `${ value }`,
+                body:JSON.stringify({
+                    "status": `${ status }`,
                     "id": `${ id }`
-                }
+                })
             })
             .then((data) => {})
             .catch((err) => {
@@ -109,6 +89,11 @@ const Manager = (props) => {
         setChecked1('')
        }
     }
+
+    // NOT IMPLEMENTED BUT UNCHECKS ALL BOXES,
+    // BEFORE RENDER SO THE CHECKED STATE IS PROPERLY REPRESENTED
+    // ON MOUNT
+    const handleAllCheckedBoxes = () => {}
 
     return (
     <div>
@@ -129,16 +114,16 @@ const Manager = (props) => {
               <td>{applicant.id}</td>
               <td>{applicant.user_id}</td>
               <td>{applicant.job_id}</td>
-              <td><input id={`checkbox_1_${applicant.id}`} checked={ (applicant.id == checked1) }
-               onChange={e => handleChange1(e.target.checked, applicant.id)}
+              <td><input id={`checkbox_1_${applicant.id}`} checked={ (applicant.status == checked1) }
+               onChange={e => handleChange1(e.target.checked, applicant.id, applicant.status)}
                type="checkbox"
                title="Update Status"></input></td>
-              <td><input id={`checkbox_2_${applicant.id}`} checked={ (applicant.id == checked2) }
-               onChange={e => handleChange2(e.target.checked, applicant.id)}
+              <td><input id={`checkbox_2_${applicant.id}`} checked={ (applicant.status == checked2) }
+               onChange={e => handleChange2(e.target.checked, applicant.id, applicant.status)}
                type="checkbox"
                title="Update Status"></input></td>
-              <td><input id={`checkbox_3_${applicant.id}`} checked={ (applicant.id == checked3) }
-               onChange={e => handleChange3(e.target.checked, applicant.id)}
+              <td><input id={`checkbox_3_${applicant.id}`} checked={ (applicant.status == checked3) }
+               onChange={e => handleChange3(e.target.checked, applicant.id, applicant.status)}
                type="checkbox"
                title="Update Status"></input></td>
             </tr>

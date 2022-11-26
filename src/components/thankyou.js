@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import React, { useState, useEffect, Component } from 'react';
 import '../App.css'
 
 const Thankyou = () => {

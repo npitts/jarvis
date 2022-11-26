@@ -1,3 +1,4 @@
+import React, { Component} from 'react';
 import { Navigate, useLocation } from "react-router-dom";
 import Application from "./application";
 import Employee from './employee';

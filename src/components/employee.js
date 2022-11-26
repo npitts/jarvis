@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 
 const Employee = (props) => {
     const [data, setData] = useState([]);
@@ -6,7 +6,7 @@ const Employee = (props) => {
     const { value } = props;
 
     useEffect(()=>{
-        fetch(`http://localhost:8080/api/application/info/${value}`,{
+        fetch(`${process.env.REACT_APP_SEBBASSION_HOST}/api/application/info/${value}`,{
             method: 'GET',
             headers:{},
         })
