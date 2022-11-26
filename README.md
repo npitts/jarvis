@@ -46,8 +46,17 @@ http://localhost:3000
 
 You will be presented with a login screen. 
 
-username: george@upwave.com,
-password: F!sdsna$sdasd%0
+Applicant Creds:
+```
+username: cornelius_pitts@yahoo.com
+password: password123
+```
+
+Hiring Manager Creds: 
+```
+username: george@upwave.com
+password: password123
+```
 
 One more thing:
 ```

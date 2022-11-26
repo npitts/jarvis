@@ -9,7 +9,7 @@ const Manager = (props) => {
     const { value } = props;
 
     useEffect(()=>{
-        fetch(`${process.env.REACT_APP_SEBBASSION_HOST}/api/application`,{
+        fetch(`${process.env.REACT_APP_SEBBASSION_HOST}/api/application/info`,{
             method: 'GET',
             headers:{},
         })
@@ -100,9 +100,11 @@ const Manager = (props) => {
       <table>
         <thead>
           <tr>
-            <th>ID</th>
             <th>Applicant</th>
             <th>Job(Role)</th>
+            <th>Email</th>
+            <th>Cover Letter</th>
+            <th>Resume</th>
             <th>Archived Status</th>
             <th>Pending Status</th>
             <th>Ready Status</th>
@@ -111,9 +113,11 @@ const Manager = (props) => {
         <tbody>
           {pageData && pageData.map(applicant => {
             return <tr key={applicant.id}>
-              <td>{applicant.id}</td>
-              <td>{applicant.user_id}</td>
+              <td>{applicant.lastname}, {applicant.firstName}</td>
               <td>{applicant.job_id}</td>
+              <td>{applicant.email}</td>
+              <td>{applicant.cover_letter}</td>
+              <td>{"N/A"}</td>
               <td><input id={`checkbox_1_${applicant.id}`} checked={ (applicant.status == checked1) }
                onChange={e => handleChange1(e.target.checked, applicant.id, applicant.status)}
                type="checkbox"
